@@ -53,18 +53,6 @@
     .highlight {
             background-color: orange !important;
         }
-        /* #allComments{
-          position: fixed;
-          right: 0;
-          bottom: 0;
-          width: 200px;
-          height: 95vh;
-          z-index: 10;
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-          flex-direction: column;
-        } */
   </style>
 
 </head>
@@ -73,18 +61,17 @@
 
   <div id="comment-block">
     <div class="comment-div-1">
-      <button id="comment-close" type="button" class="btn-close" data-bs-dismiss="comment-block" aria-label="Close"
+      <button type="button" class="btn-close" data-bs-dismiss="comment-block" aria-label="Close"
         onclick="closeComments()"></button>
       <div class="inner-comment">
-       <textarea id="newComment" placeholder="كتابة ملاحظة"></textarea>
+        <textarea placeholder="كتابة ملاحظة"></textarea>
         <div class="comment-btns-div">
-          <button id="addComments">حفظ</button>
-          <!-- <button id="delete-comment">حذف</button> -->
+          <button id="save">حفظ</button>
+          <button id="delete-comment">حذف</button>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div id="allComments"></div> -->
   <!--[if lt IE 10]>
                 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
                 <![endif]-->
