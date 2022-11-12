@@ -931,11 +931,11 @@ ineractive1.forEach((li) => {
     if (li.className === "video") {
       title = "فيديو تفاعلي";
       content =
-        "../interactive/case02/story_content/video_5kMbnTilyUm_18_160_1920x1080.mp4";
+        "e-book/assets/interactive/case02/story_content/video_5kMbnTilyUm_18_160_1920x1080.mp4";
       interactive(title, content, true, false, false);
     } else if (li.className === "message") {
       title = "حالة تدريبية";
-      content = "../interactive/case02/index.html";
+      content = "e-book/assets/interactive/case02/index.html";
       interactive(title, content, true, false, false);
     }
   };
