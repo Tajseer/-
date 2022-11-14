@@ -122,13 +122,13 @@ const select = (e) => {
     ) {
       var evt = typeof e.originalEvent === "undefined" ? e : e.originalEvent;
       var touch = evt.touches[0] || evt.changedTouches[0];
-      editTools.style.top = `${e.pageY - 100}px`;
+      editTools.style.top = `${e.pageY + 50}px`;
       if (editToolsDetails.left < 0) {
         editTools.style.left = 0;
       } else if (editToolsDetails.right > window.innerWidth) {
         editTools.style.left = window.innerWidth;
       } else {
-        editTools.style.left = `${e.pageX - 100}px`;
+        editTools.style.left = `${e.pageX - 90}px`;
       }
     } else {
       editTools.style.top = `calc(${rect.top}px + ${rect.height}px)`;
