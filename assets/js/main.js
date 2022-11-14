@@ -121,7 +121,6 @@ const select = (e) => {
       e.type == "touchend" ||
       e.type == "touchcancel"
     ) {
-      console.log(editToolsDetails.width);
       var evt = typeof e.originalEvent === "undefined" ? e : e.originalEvent;
       var touch = evt.touches[0] || evt.changedTouches[0];
       editTools.style.top = `${e.pageY + 20}px`;
