@@ -114,18 +114,20 @@ const select = (e) => {
     let rect = sel.getRangeAt(0).getBoundingClientRect();
     let editToolsDetails = editTools.getBoundingClientRect();
 
+    editTools.style.transform = "scale(1)";
     if (
       e.type == "touchstart" ||
       e.type == "touchmove" ||
       e.type == "touchend" ||
       e.type == "touchcancel"
     ) {
+      console.log(editToolsDetails.width);
       var evt = typeof e.originalEvent === "undefined" ? e : e.originalEvent;
       var touch = evt.touches[0] || evt.changedTouches[0];
       editTools.style.top = `${e.pageY + 20}px`;
-      if (editToolsDetails.left < 0) {
+      if (e.pageX - 90 < 0) {
         editTools.style.left = 0;
-      } else if (editToolsDetails.right > window.innerWidth) {
+      } else if (e.pageX - 90 + 209 > window.innerWidth) {
         editTools.style.left = window.innerWidth;
       } else {
         editTools.style.left = `${e.pageX - 90}px`;
@@ -140,7 +142,6 @@ const select = (e) => {
         editTools.style.left = `calc(${rect.left}px + calc(${rect.width}px / 2) - 130px)`;
       }
     }
-    editTools.style.transform = "scale(1)";
   }
 
   // else if (selRange && isTouch) {
