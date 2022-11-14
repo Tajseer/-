@@ -123,20 +123,20 @@ const select = (e) => {
     ) {
       var evt = typeof e.originalEvent === "undefined" ? e : e.originalEvent;
       var touch = evt.touches[0] || evt.changedTouches[0];
-      editTools.style.top = `${e.pageY + 20}px`;
-      if (e.pageX - 90 < 0) {
+      editTools.style.top = `${touch.pageY + 20}px`;
+      if (touch.pageX - 90 < 0) {
         editTools.style.left = 0;
-      } else if (e.pageX - 90 + 209 > window.innerWidth) {
-        editTools.style.left = `${window.innerWidth}px`;;
+      } else if (touch.pageX - 90 + 209 > window.innerWidth) {
+        editTools.style.left = `${window.innerWidth - 209}px`;
       } else {
-        editTools.style.left = `${e.pageX - 90}px`;
+        editTools.style.left = `${touch.pageX - 90}px`;
       }
     } else {
       editTools.style.top = `calc(${rect.top}px + ${rect.height}px)`;
       if (rect.left + rect.width / 2 - 130 < 0) {
         editTools.style.left = 0;
       } else if (rect.left + rect.width / 2 - 130 > window.innerWidth) {
-        editTools.style.left = `${window.innerWidth}px`;;
+        editTools.style.left = `${window.innerWidth}px`;
       } else {
         editTools.style.left = `calc(${rect.left}px + calc(${rect.width}px / 2) - 130px)`;
       }
