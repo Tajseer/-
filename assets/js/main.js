@@ -128,7 +128,7 @@ const select = (e) => {
       if (e.pageX - 90 < 0) {
         editTools.style.left = 0;
       } else if (e.pageX - 90 + 209 > window.innerWidth) {
-        editTools.style.left = window.innerWidth;
+        editTools.style.left = `${window.innerWidth}px`;;
       } else {
         editTools.style.left = `${e.pageX - 90}px`;
       }
@@ -137,7 +137,7 @@ const select = (e) => {
       if (rect.left + rect.width / 2 - 130 < 0) {
         editTools.style.left = 0;
       } else if (rect.left + rect.width / 2 - 130 > window.innerWidth) {
-        editTools.style.left = window.innerWidth;
+        editTools.style.left = `${window.innerWidth}px`;;
       } else {
         editTools.style.left = `calc(${rect.left}px + calc(${rect.width}px / 2) - 130px)`;
       }
