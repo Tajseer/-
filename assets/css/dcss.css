@@ -1,0 +1,207 @@
+    .signatureLabel,
+    .dataPointsLabel,
+    .dataPointsLoadLabel {
+        position: absolute;
+        top: 36px;
+        color: Blue;
+        font-size: 14pt;
+        font-family: Century Gothic;
+    }
+
+
+    .header-btns {
+        z-index: 10000000666666000;
+        position: absolute;
+        display: flex;
+        gap: 10px;
+        text-align: center;
+        height: auto;
+        width: 400px;
+        left: 30%;
+        top: 5px;
+    }
+
+    #drawtools {
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-size: 10px;
+        direction: rtl;
+        padding: 5px;
+        margin: 2px;
+        visibility: hidden;
+        z-index: 10000000000;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        top: 0;
+        background-color: rgba(8, 55, 59, 0.902);
+        border-radius: 6px;
+        height: auto;
+        width: 210PX;
+    }
+
+    .buttonBlue {
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-size: 10px;
+        color: white;
+        background-color: rgba(8, 55, 59, 0.902);
+        border-radius: 6px;
+        height: 33px;
+        width: 150px;
+
+    }
+
+    .buttonRED {
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-size: 10px;
+        color: white;
+        /* border-radius: 45px; */
+        height: 25px;
+        width: inherit;
+
+    }
+
+    .signatureLabel {
+        left: 108px;
+    }
+
+    .signatureBox {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        height: inherit;
+        width: inherit;
+        border: solid 1px transparent;
+        /* cursor: pointer; */
+    }
+
+    .mspan {
+        border-top: 1px solid rgb(139, 169, 132);
+        width: 100%;
+        height: 1px;
+        display: block;
+        margin-bottom: 12px;
+        margin-top: 4px;
+    }
+
+    .nonsignatureBox {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        height: 5px;
+        width: inherit;
+        border: solid 3px transparent;
+        cursor: pointer;
+    }
+
+
+    .dataPointsLabel {
+        left: 625px;
+    }
+
+    .dataPointsBox {
+        position: absolute;
+        top: 60px;
+        left: 625px;
+        height: 203px;
+        width: 217px;
+    }
+
+    .dataPointsLoadLabel {
+        left: 856px;
+    }
+
+    .dataPointsLoadBox {
+        position: absolute;
+        top: 60px;
+        left: 855px;
+        height: 203px;
+        width: 217px;
+    }
+
+    .clearButton {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+    }
+
+    .loadButton {
+        position: absolute;
+        width: 75px;
+    }
+
+    .animateCheckbox {}
+
+    .animateCheckboxDiv {
+        position: absolute;
+        left: 851px;
+        top: 270px;
+        color: Blue;
+        font-size: 10pt;
+        font-family: Century Gothic;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    .flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .flex-top {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+    }
+
+    label {
+        margin-right: 5px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    label::before {
+        content: '';
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+
+    label.fw::before {
+        background-color: #72c2ba;
+    }
+
+    label.fw-2::before {
+        width: 17px;
+        height: 17px;
+    }
+
+    label.fw-3::before {
+        width: 22px;
+        height: 22px;
+    }
+
+    label.fc::before {
+        width: 15px;
+        height: 15px;
+    }
+
+    label.fc-1::before {
+        background-color: #f00;
+    }
+
+    label.fc-2::before {
+        background-color: #00f;
+    }
+
+    label.fc-3::before {
+        background-color: #000;
+    }
