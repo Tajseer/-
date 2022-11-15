@@ -345,7 +345,6 @@ const createCommentIcon = (e, page) => {
   div.style.left = `${x}px`;
 
   commentBlockVisability({ isVisable: true, commentIcon: div });
-  console.log(div + " 348");
   commentButtoListener(div);
   btn[2].classList.remove("active");
 };
@@ -375,7 +374,6 @@ const commentBlockVisability = ({ isVisable, commentIcon }) => {
 
 function commentButtoListener(div) {
   div.onclick = () => {
-    console.log(div);
     const id = div.id;
     textArea.value = comments[id];
     targetId = id;
