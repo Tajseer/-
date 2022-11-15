@@ -1,7 +1,20 @@
-function removeHeight() {
-  document
-    .getElementsByClassName("currentPageDiv")[0]
-    .classList.remove("height");
+// function removeHeight() {
+//   document
+//     .getElementsByClassName("currentPageDiv")[0]
+//     .classList.remove("height");
+// }
+function closeDraw() {
+  drawBtn.classList.remove("active");
+  // drawBtn.innerText = "ابدأ بالرسم";
+  tools.style.visibility = "hidden";
+  const allDrwClases = Array.from(
+    document.getElementsByClassName("signatureBox")
+  );
+  for (var i = 0; i < allDrwClases.length; i++) {
+    allDrwClases[i].classList.remove("signatureBox");
+    allDrwClases[i].classList.add("nonsignatureBox");
+  }
+  drawBtn.classList.remove("active");
 }
 var useBookmark = false;
 var limitWebAppToDevice = location.search.toLowerCase().indexOf("webapp=0") < 0;
@@ -828,13 +841,13 @@ function initPageMode() {
     nav = {
       next: function () {
         $sl.turn("next");
-        removeHeight();
-        localStorage.setItem("current-page", nav.activeView[0] + 2);
+        // removeHeight();
+        // localStorage.setItem("current-page", nav.activeView[0] + 2);
       },
       back: function () {
         $sl.turn("previous");
-        removeHeight();
-        localStorage.setItem("current-page", nav.activeView[0] - 2);
+        // removeHeight();
+        // localStorage.setItem("current-page", nav.activeView[0] - 2);
       },
       to: function (n, c, q) {
         $(document).trigger("beforeNewPage", { newPageIndex: n });
@@ -877,37 +890,39 @@ function initPageMode() {
           $sl.css(prefix.css + "transform", "translateX(0px)" + transY);
         }
 
-        setTimeout(() => {
-          if (nav.activeView[0] !== 0) {
-            localStorage.setItem(
-              "current-page",
-              nav.activeView ? nav.activeView[0] : null
-            );
-            removeHeight();
-          } else {
-            localStorage.setItem("state", true);
-            setTimeout(() => {
-              localStorage.setItem("state", false);
-            }, 600);
-            if (localStorage.getItem("state") == "false") {
-              localStorage.setItem("current-page", 0);
-              console.log("0 from in5");
-            } else {
-              window.addEventListener("load", () => {
-                let idx = localStorage.getItem("current-page");
-                localStorage.setItem("current-page", idx);
-              });
-            }
+        // setTimeout(() => {
+        //   if (nav.activeView[0] !== 0) {
+        //     localStorage.setItem(
+        //       "current-page",
+        //       nav.activeView ? nav.activeView[0] : null
+        //     );
+        //     // removeHeight();
+        //     closeDraw();
+        //   } else {
+        //     localStorage.setItem("state", true);
+        //     closeDraw();
+        //     setTimeout(() => {
+        //       localStorage.setItem("state", false);
+        //     }, 600);
+        //     if (localStorage.getItem("state") == "false") {
+        //       localStorage.setItem("current-page", 0);
+        //     } else {
+        //       window.addEventListener("load", () => {
+        //         let idx = localStorage.getItem("current-page");
+        //         localStorage.setItem("current-page", idx);
+        //         closeDraw();
+        //       });
+        //     }
 
-            // if (idx !== 0) {
-            //   console.log("1 : " + idx);
-            //   localStorage.setItem("current-page", idx);
-            // } else {
-            //   console.log("2 : " + idx);
-            //   localStorage.setItem("current-page", 0);
-            // }
-          }
-        }, 300);
+        //     // if (idx !== 0) {
+        //     //   console.log("1 : " + idx);
+        //     //   localStorage.setItem("current-page", idx);
+        //     // } else {
+        //     //   console.log("2 : " + idx);
+        //     //   localStorage.setItem("current-page", 0);
+        //     // }
+        //   }
+        // }, 300);
       },
     };
     initPageFlip = function () {
