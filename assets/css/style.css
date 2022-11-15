@@ -474,7 +474,7 @@ button {
 }
 
 .num {
-    padding-left: 6%;
+    padding-left: 5.5%;
     padding-right: 1%
 }
 
@@ -673,6 +673,10 @@ button {
 
     .offcanvas-top {
         height: 35vh !important
+    }
+
+    .num {
+        padding-left: 3%;
     }
 }
 
