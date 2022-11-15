@@ -1009,7 +1009,7 @@ const todo = document.getElementsByClassName("todo")[0];
 
 todo.onclick = () => {
   let title = "قائمة المهام";
-  let content = "/../assets/todo1/index.html";
+  let content = "https://tajseer.github.io/todo-list/";
   interactive(title, content, true, false, false);
 };
 
