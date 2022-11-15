@@ -40,36 +40,36 @@ const savHandler = (isSave) => {
 };
 const closeDiv = () => {
   closeDraw();
-  document
-    .getElementsByClassName("currentPageDiv")[0]
-    .classList.remove("height");
-  localStorage.setItem("current-page", 0);
-  console.log("0 from main");
+  // document
+  //   .getElementsByClassName("currentPageDiv")[0]
+  //   .classList.remove("height");
+  // localStorage.setItem("current-page", 0);
+  // console.log("0 from main");
 };
-const moveToCurrentPage = () => {
-  let currentPage = localStorage.getItem("current-page");
-  if (currentPage != 0 && localStorage.getItem("state") === "false") {
-    window.top.nav.to(currentPage);
-    document
-      .getElementsByClassName("currentPageDiv")[0]
-      .classList.remove("height");
-  }
-};
+// const moveToCurrentPage = () => {
+//   let currentPage = localStorage.getItem("current-page");
+//   if (currentPage != 0 && localStorage.getItem("state") === "false") {
+//     window.top.nav.to(currentPage);
+//     document
+//       .getElementsByClassName("currentPageDiv")[0]
+//       .classList.remove("height");
+//   }
+// };
 
-if (localStorage.getItem("current-page")) {
-  if (
-    localStorage.getItem("current-page") == 0 ||
-    localStorage.getItem("current-page") == "null"
-  ) {
-    document
-      .getElementsByClassName("currentPageDiv")[0]
-      .classList.remove("height");
-  } else {
-    document
-      .getElementsByClassName("currentPageDiv")[0]
-      .classList.add("height");
-  }
-}
+// if (localStorage.getItem("current-page")) {
+//   if (
+//     localStorage.getItem("current-page") == 0 ||
+//     localStorage.getItem("current-page") == "null"
+//   ) {
+//     document
+//       .getElementsByClassName("currentPageDiv")[0]
+//       .classList.remove("height");
+//   } else {
+//     document
+//       .getElementsByClassName("currentPageDiv")[0]
+//       .classList.add("height");
+//   }
+// }
 
 const savedVersion = window.localStorage.getItem("new");
 if (savedVersion) {
