@@ -1,9 +1,6 @@
 let currentPage;
 let temp;
 const li = Array.prototype.slice.call(document.getElementsByClassName("page"));
-window.addEventListener("load", () => {
-  interactive("الفهرس", "", true, false, true);
-});
 
 const asyncLocalStorage = {
   setItem: async function (key, value) {
@@ -243,9 +240,10 @@ const textArea = document.querySelector("textarea");
 const saveComment = document.getElementById("save");
 
 for (const key in comments) {
-  // console.log(key);
-  const div = document.getElementById(key);
-  commentButtoListener(div);
+  setTimeout(() => {
+    const div = document.getElementById(key);
+    commentButtoListener(div);
+  }, 100);
 }
 
 const isSetCommentAllowed = () => {
@@ -347,7 +345,7 @@ const createCommentIcon = (e, page) => {
   div.style.left = `${x}px`;
 
   commentBlockVisability({ isVisable: true, commentIcon: div });
-
+  console.log(div + " 348");
   commentButtoListener(div);
   btn[2].classList.remove("active");
 };
@@ -376,12 +374,13 @@ const commentBlockVisability = ({ isVisable, commentIcon }) => {
 };
 
 function commentButtoListener(div) {
-  div.addEventListener("click", () => {
+  div.onclick = () => {
+    console.log(div);
     const id = div.id;
     textArea.value = comments[id];
     targetId = id;
     commentBlockVisability({ isVisable: true, commentIcon: div });
-  });
+  };
   return;
 }
 
@@ -635,6 +634,9 @@ const interactive = (title, content, isModal, isImg, isIndex) => {
     modalClose.classList.remove("close");
   }
 };
+window.addEventListener("load", () => {
+  interactive("الفهرس", "", true, false, true);
+});
 
 modalClose.addEventListener("click", () => {
   interactive(null, null, false, false, false);
