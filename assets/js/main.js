@@ -1,3 +1,5 @@
+let currentPage;
+let temp;
 const li = Array.prototype.slice.call(document.getElementsByClassName("page"));
 window.addEventListener("load", () => {
   interactive("الفهرس", "", true, false, true);
@@ -18,6 +20,7 @@ const savHandler = (isSave) => {
   let arr = [];
   li.forEach(async (el) => {
     if (isSave) {
+      // closeDraw();
       arr.push(el.innerHTML);
       // localStorage.setItem(`new`, JSON.stringify(arr));
       asyncLocalStorage.setItem("new", JSON.stringify(arr));
@@ -436,7 +439,7 @@ const createCheckBox = ({ id, onchange }) => {
 };
 
 //! ***********************************functions******************************************
-const checkboxWhenClick = (e, checkbox) => {
+const checkboxWhenClick = (e, checkbox, index) => {
   if (!bookingPages[e.target.id]) {
     bookingPages[e.target.id] = index + 1;
     //../assets/png/ref.png
@@ -471,10 +474,10 @@ const addCheckMarkToPages = () => {
         checkbox.style.left = "0";
       }
       checkbox.onclick = (e) => {
-        checkboxWhenClick(e, checkbox);
+        checkboxWhenClick(e, checkbox, index);
       };
       checkbox.ontouchend = (e) => {
-        checkboxWhenClick(e, checkbox);
+        checkboxWhenClick(e, checkbox, index);
       };
 
       page.append(checkbox);
@@ -1197,7 +1200,8 @@ function closeDraw() {
   li.forEach((l) => {
     l.classList.remove("cursor-pen");
   });
-  document.getElementById("container").classList.remove("cursor-pen");
+
+  // document.getElementById("container").classList.remove("cursor-pen");
   drawBtn.classList.remove("active");
   // drawBtn.innerText = "ابدأ بالرسم";
   tools.style.visibility = "hidden";
@@ -1224,25 +1228,54 @@ function StartDraw() {
   li.forEach((l) => {
     l.classList.add("cursor-pen");
   });
-  var currentPage = getactiveli();
+  // var currentPage = getactiveli();
   const liComponents = document.getElementsByClassName("page");
-  var addedDiv = document.createElement("div");
-  addedDiv.setAttribute("class", "nonsignatureBox");
-  addedDiv.id = "s" + currentPage;
-  liComponents[currentPage - 1].appendChild(addedDiv);
-  inchargePage(currentPage);
+  if (document.getElementById("s" + currentPage)) {
+    inchargePage(currentPage);
+  } else {
+    var addedDiv = document.createElement("div");
+    addedDiv.setAttribute("class", "nonsignatureBox");
+    addedDiv.id = "s" + currentPage;
+    li[currentPage - 1].appendChild(addedDiv);
+
+    inchargePage(currentPage);
+  }
+  // inchargePage(currentPage);
+  // console.log(currentPage + " after assign");
 }
 
 function getactiveli() {
-  const liComponents = document.getElementsByClassName("page");
-  var currentpage = 0;
-  for (var i = 0; i < liComponents.length; i++) {
-    if (liComponents[i].classList.contains("activePage")) {
-      currentpage = i + 1;
-      break;
-    }
-  }
-  return currentpage;
+  const liComponents = Array.prototype.slice.call(
+    document.getElementsByClassName("page")
+  );
+  liComponents.forEach((c) => {
+    c.addEventListener("mousemove", () => {
+      currentPage = c.getAttribute("data-name");
+
+      if (
+        document.getElementById("drawbtn").classList.contains("active") &&
+        temp != currentPage
+      ) {
+        closeDraw();
+        StartDraw();
+        openDraw();
+      }
+      temp = currentPage;
+    });
+    c.addEventListener("touchstart", () => {
+      currentPage = c.getAttribute("data-name");
+
+      if (
+        document.getElementById("drawbtn").classList.contains("active") &&
+        temp != currentPage
+      ) {
+        closeDraw();
+        StartDraw();
+        openDraw();
+      }
+      temp = currentPage;
+    });
+  });
 }
 
 function stopDrawOnOthers() {
@@ -1361,6 +1394,7 @@ var Drawer = function () {
       this.color +
       ';"></div>';
     $(".signatureBox").append(div);
+    savHandler(true);
   };
 
   this.setStartingPoint = function (event, offset) {
@@ -1525,4 +1559,91 @@ function inchargePage(choice) {
     // $('#loadButton1').click(function(){drawer.load(0);});
     // $('#loadButton2').click(function(){drawer.load(1);});
   });
+}
+const fc1 = document.getElementsByClassName("fc-1")[0];
+const fc2 = document.getElementsByClassName("fc-2")[0];
+const fc3 = document.getElementsByClassName("fc-3")[0];
+const fw1 = document.getElementsByClassName("fw-1")[0];
+const fw2 = document.getElementsByClassName("fw-2")[0];
+const fw3 = document.getElementsByClassName("fw-3")[0];
+
+const weFunc = () => {
+  const fw = document.querySelectorAll(".fw");
+  fw.forEach((f) => {
+    f.classList.remove("active-radio");
+  });
+};
+const coFunc = () => {
+  const fc = document.querySelectorAll(".fc");
+  fc.forEach((f) => {
+    f.classList.remove("active-radio");
+  });
+};
+
+fc1.onclick = (e) => {
+  document.getElementById("co1").checked = true;
+  coFunc();
+  fc1.classList.add("active-radio");
+};
+fc2.onclick = (e) => {
+  document.getElementById("co2").checked = true;
+  coFunc();
+  fc2.classList.add("active-radio");
+};
+fc3.onclick = (e) => {
+  document.getElementById("co3").checked = true;
+  coFunc();
+  fc3.classList.add("active-radio");
+};
+fw1.onclick = (e) => {
+  document.getElementById("we1").checked = true;
+  weFunc();
+  fw1.classList.add("active-radio");
+};
+fw2.onclick = (e) => {
+  document.getElementById("we2").checked = true;
+  weFunc();
+  fw2.classList.add("active-radio");
+};
+fw3.onclick = (e) => {
+  document.getElementById("we3").checked = true;
+  weFunc();
+  fw3.classList.add("active-radio");
+};
+
+window.jsPDF = window.jspdf.jsPDF;
+function generatePDF(txt1, txt2) {
+  let arr1 = Object.values(txt1);
+
+  let arr2 = Object.values(txt2);
+  let BP = "";
+  let C = "";
+  for (var j = 0; j < arr1.length; j++) {
+    C += "Note " + (j + 1) + ": " + arr1[j] + ", ";
+  }
+  for (var i = 0; i < arr2.length; i++) {
+    BP += "page " + arr2[i] + ", ";
+  }
+  var doc = new jsPDF();
+
+  doc.text(20, 20, "Notes: " + C + "Bookmarks: " + BP);
+  //   doc.text(20,30,'this is client side');
+
+  doc.save("document.pdf");
+}
+
+function setLocal() {
+  // alert('selected2');
+
+  //    let comments = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+  //     localStorage.setItem("comment2",JSON.stringify(comments));
+
+  var selected1 = JSON.parse(window.localStorage.getItem("comments"));
+  var selected2 = JSON.parse(window.localStorage.getItem("bookingPages"));
+
+  generatePDF(selected1, selected2);
+
+  // var selected2=localStorage.getItem("comment2");
+  // alert(selected2);
 }
